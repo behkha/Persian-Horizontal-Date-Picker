@@ -33,6 +33,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
     private int defaultItemBackgroundColor = R.color.colorPrimary;
     private int defaultItemTextColor = R.color.colorAccent;
     private int mYearMonthIndex = 0;
+    private boolean hasAnimation = false;
 
     public PersianDatePicker(Context context) {
         this(context,null);
@@ -111,6 +112,10 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
         this.radius = radius;
         return this;
     }
+    public PersianDatePicker hasAnimation(boolean hasAnimation){
+        this.hasAnimation = hasAnimation;
+        return this;
+    }
 
     public void load(){
         if (this.mYearMonths.size() == 0)
@@ -130,6 +135,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
         adapter.setYearMonth(yearMonth);
         adapter.setElevation(this.elevation);
         adapter.setRadius(this.radius);
+        adapter.setAnimation(this.hasAnimation);
         this.mDaysRecyclerView.setAdapter( adapter );
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , true);
         this.mDaysRecyclerView.setLayoutManager(linearLayoutManager);

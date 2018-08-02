@@ -27,6 +27,7 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     private Typeface typeface;
     private float elevation;
     private float radius;
+    private boolean hasAnimation;
 
     public DaysRecyclerViewAdapter(Context mContext, ArrayList<Day> mDays, PersianDatePicker.OnDaySelectListener onDaySelectListener) {
         this.mContext = mContext;
@@ -60,8 +61,11 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
             int prevSelectPosition = selectedPosition;
             selectedPosition = getAdapterPosition();
             Day day = mDays.get( selectedPosition );
-            notifyItemChanged( selectedPosition );
-            notifyItemChanged( prevSelectPosition );
+            if ( hasAnimation ) {
+                notifyItemChanged(selectedPosition);
+                notifyItemChanged(prevSelectPosition);
+            } else
+                notifyDataSetChanged();
             if (mOnDaySelectListener != null) {
                 mOnDaySelectListener.onDaySelect( yearMonth , day );
             }
@@ -123,5 +127,7 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     public void setRadius(float radius) {
         this.radius = radius;
     }
-
+    public void setAnimation(boolean animation){
+        this.hasAnimation = animation;
+    }
 }
