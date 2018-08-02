@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.ratintech.behkha.persianhorizontaldatepicker"
+        applicationId "com.ratintech.behkha.persiandatepicker"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -28,4 +28,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.github.aliab:Persian-Date-Picker-Dialog:1.4'
+    implementation project(':persiandatepicker')
 }

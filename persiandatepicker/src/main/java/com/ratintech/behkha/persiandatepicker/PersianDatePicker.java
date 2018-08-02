@@ -17,8 +17,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import model.Day;
-import model.YearMonth;
 
 public class PersianDatePicker extends LinearLayout implements View.OnClickListener  {
 
@@ -164,14 +162,14 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.left_arrow:
-                    gotoNextMonth();
-                    break;
-                case R.id.right_arrow:
-                    gotoPreviousMonth();
-                    break;
-            }
+        int i = v.getId();
+        if (i == R.id.left_arrow) {
+            gotoNextMonth();
+
+        } else if (i == R.id.right_arrow) {
+            gotoPreviousMonth();
+
+        }
     }
     private void gotoNextMonth(){
         if (mYearMonthIndex == mYearMonths.size() - 1)

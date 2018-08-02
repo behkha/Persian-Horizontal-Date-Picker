@@ -1,4 +1,4 @@
-package model;
+package com.ratintech.behkha.persiandatepicker;
 
 public class Day {
 
