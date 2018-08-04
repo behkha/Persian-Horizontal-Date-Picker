@@ -38,10 +38,18 @@ Then use the view in your layouts:
 ``` java
 PersianDatePicker persianDatePicker = findViewById(R.id.persian_date_picker);
         persianDatePicker.setYearMonths( new Calendar( new PersianCalendar().getPersianLongDate()).getYearMonths() )
-                .setDefaultItemBackgroundColor(R.color.defaultBackgroundColor)
-                .setDefaultItemTextColor(R.color.defaultTextColor)
-                .setSelectedItemBackgroundColor(R.color.colorPrimary)
-                .setSelectedItemTextColor(R.color.selectText)
-                .hasAnimation(false)
+                .setDefaultItemBackgroundColor(R.color.defaultBackgroundColor)  // background color of non-selected item
+                .setDefaultItemTextColor(R.color.defaultTextColor)  // text color of non-selected item
+                .setSelectedItemBackgroundColor(R.color.colorPrimary) // background color of selected item
+                .setSelectedItemTextColor(R.color.selectText)   // text color of selected item
+                .setListener(new PersianDatePicker.OnDaySelectListener() {
+                    @Override
+                    public void onDaySelect(YearMonth yearMonth, Day day) {
+                        // right your code here when item is selected 
+                    }
+                })
+                .setItemElevation( 4f )  // default is 0
+                .setItemRadius( 2f )  // default is 0
+                .hasAnimation(true) // Animation for item selection . default is false 
                 .load();
 ```
