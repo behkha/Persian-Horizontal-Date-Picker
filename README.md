@@ -2,7 +2,7 @@
 This Library is a date picker for Android to pick a date and only supports a year from the day you open the app.
 
 ### Demo
-![persian_horizontal-date-picker](https://github.com/Behkha/Persian-Horizontal-Date-Picker/blob/master/library_review.gif)
+![persian_horizontal-date-picker](https://github.com/Behkha/Persian-Horizontal-Date-Picker/blob/master/demo.gif)
 
 ### Usage
 First add jitpack to your projects build.gradle file
