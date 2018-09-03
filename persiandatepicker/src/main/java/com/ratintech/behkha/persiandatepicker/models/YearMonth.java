@@ -1,9 +1,10 @@
-package com.ratintech.behkha.persiandatepicker;
+package com.ratintech.behkha.persiandatepicker.models;
 
 import java.util.ArrayList;
 
 public class YearMonth {
 
+    private String[] persianMonthNames = new String[]{"فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"};
     private int year;
     private String month;
     private ArrayList<Day> days;
@@ -36,5 +37,18 @@ public class YearMonth {
 
     public void setDays(ArrayList<Day> days) {
         this.days = days;
+    }
+
+    public String getMonthNumber(){
+        int index = -1;
+        for (int i = 0; i < persianMonthNames.length; i++) {
+            if (persianMonthNames[i].equals(this.month))
+                index = i;
+        }
+        index++;
+        if ( 0 < index && index < 10)
+            return "0" + index;
+        else
+            return String.valueOf(index);
     }
 }

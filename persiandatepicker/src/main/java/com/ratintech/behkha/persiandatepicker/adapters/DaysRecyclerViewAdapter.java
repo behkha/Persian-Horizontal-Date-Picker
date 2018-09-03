@@ -1,4 +1,4 @@
-package com.ratintech.behkha.persiandatepicker;
+package com.ratintech.behkha.persiandatepicker.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,6 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ratintech.behkha.persiandatepicker.PersianDatePicker;
+import com.ratintech.behkha.persiandatepicker.R;
+import com.ratintech.behkha.persiandatepicker.models.Day;
+import com.ratintech.behkha.persiandatepicker.models.YearMonth;
 
 import java.util.ArrayList;
 
@@ -21,7 +26,6 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     private PersianDatePicker.OnDaySelectListener mOnDaySelectListener;
     private int selectedPosition = -1;
     private int selectedItemBackgroundColor;
-    private int selectedItemBackgroundDrawable;
     private int selectedItemTextColor;
     private int defaultItemBackgroundColor;
     private int defaultItemTextColor;
@@ -41,7 +45,7 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
         TextView mWeekDay;
         CardView mRoot;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             mDay = itemView.findViewById(R.id.day);
@@ -54,6 +58,25 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
             if (typeface != null){
                 mDay.setTypeface( typeface );
                 mWeekDay.setTypeface(typeface);
+            }
+        }
+
+        void setItem(Day day){
+            bind(day);
+        }
+
+        private void bind(Day day){
+            mDay.setText(String.valueOf(day.getNumber()));
+            mWeekDay.setText(day.getDay());
+
+            if ( getAdapterPosition() == selectedPosition ){
+                mDay.setTextColor( mContext.getResources().getColor( selectedItemTextColor ) );
+                mWeekDay.setTextColor( mContext.getResources().getColor( selectedItemTextColor ) );
+                mRoot.setCardBackgroundColor( mContext.getResources().getColor( selectedItemBackgroundColor ) );
+            }  else {
+                mRoot.setCardBackgroundColor( mContext.getResources().getColor( defaultItemBackgroundColor ) );
+                mDay.setTextColor( mContext.getResources().getColor( defaultItemTextColor ) );
+                mWeekDay.setTextColor( mContext.getResources().getColor( defaultItemTextColor ) );
             }
         }
 
@@ -85,21 +108,8 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Day day = mDays.get(position);
-        holder.mDay.setText(String.valueOf(day.getNum()));
-        holder.mWeekDay.setText(day.getDay());
+        holder.setItem(day);
 
-        if ( position == selectedPosition ){
-            holder.mDay.setTextColor( mContext.getResources().getColor( this.selectedItemTextColor ) );
-            holder.mWeekDay.setTextColor( mContext.getResources().getColor( this.selectedItemTextColor ) );
-            if ( this.selectedItemBackgroundDrawable != 0 )
-                holder.mRoot.setBackground( mContext.getResources().getDrawable( this.selectedItemBackgroundDrawable ) );
-            else
-                holder.mRoot.setCardBackgroundColor( mContext.getResources().getColor( this.selectedItemBackgroundColor ) );
-        }  else {
-            holder.mRoot.setCardBackgroundColor( mContext.getResources().getColor( this.defaultItemBackgroundColor ) );
-            holder.mDay.setTextColor( mContext.getResources().getColor( this.defaultItemTextColor ) );
-            holder.mWeekDay.setTextColor( mContext.getResources().getColor( this.defaultItemTextColor ) );
-        }
     }
 
     @Override
@@ -112,9 +122,6 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     }
     public void setSelectedItemBackgroundColor(int selectedItemBackgroundColor) {
         this.selectedItemBackgroundColor = selectedItemBackgroundColor;
-    }
-    public void setSelectedItemBackgroundDrawable(int selectedItemBackgroundDrawable){
-        this.selectedItemBackgroundDrawable = selectedItemBackgroundDrawable;
     }
     public void setSelectedItemTextColor(int selectedItemTextColor) {
         this.selectedItemTextColor = selectedItemTextColor;
