@@ -93,7 +93,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
         this.selectedItemBackgroundColor = color;
         return this;
     }
-    public PersianDatePicker setSeelctedItemBackground(@DrawableRes int background){
+    public PersianDatePicker setSelectedItemBackground(@DrawableRes int background){
         this.selectedItemBackground = background;
         return this;
     }

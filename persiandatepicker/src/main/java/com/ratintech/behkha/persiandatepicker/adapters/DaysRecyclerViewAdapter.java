@@ -78,7 +78,10 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
                 else
                     mRoot.setCardBackgroundColor( mContext.getResources().getColor( selectedItemBackgroundColor ) );
             }  else {
-                mRoot.setCardBackgroundColor( mContext.getResources().getColor( defaultItemBackgroundColor ) );
+                if (selectedItemBackground != 0)
+                    mRoot.setBackgroundColor( mContext.getResources().getColor( defaultItemBackgroundColor ));
+                else
+                    mRoot.setCardBackgroundColor( mContext.getResources().getColor( selectedItemBackgroundColor ) );
                 mDay.setTextColor( mContext.getResources().getColor( defaultItemTextColor ) );
                 mWeekDay.setTextColor( mContext.getResources().getColor( defaultItemTextColor ) );
             }
