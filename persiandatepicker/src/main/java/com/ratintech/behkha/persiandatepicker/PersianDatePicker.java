@@ -29,6 +29,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
     private float elevation = 0f;
     private float radius = 0f;
     private int selectedItemBackgroundColor = R.color.colorPrimary;
+    private int selectedItemBackgroundDrawable;
     private int selectedItemTextColor = R.color.colorAccent;
     private int defaultItemBackgroundColor = R.color.colorPrimary;
     private int defaultItemTextColor = R.color.colorAccent;
@@ -88,6 +89,10 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
         this.selectedItemBackgroundColor = color;
         return this;
     }
+    public PersianDatePicker setSelectedItemBackgroundDrawable(@DrawableRes int drawable){
+        this.selectedItemBackgroundDrawable = drawable;
+        return this;
+    }
     public PersianDatePicker setSelectedItemTextColor(@ColorRes int color){
         this.selectedItemTextColor = color;
         return this;
@@ -128,6 +133,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
         mYearMonthText.setText( getTitle( yearMonth ) );
         DaysRecyclerViewAdapter adapter = new DaysRecyclerViewAdapter( getContext() , yearMonth.getDays() , this.mOnDaySelectListener);
         adapter.setSelectedItemBackgroundColor( this.selectedItemBackgroundColor );
+        adapter.setSelectedItemBackgroundDrawable( this.selectedItemBackgroundDrawable );
         adapter.setSelectedItemTextColor( this.selectedItemTextColor );
         adapter.setDefaultItemBackgroundColor( this.defaultItemBackgroundColor );
         adapter.setDefaultItemTextColor( this.defaultItemTextColor );

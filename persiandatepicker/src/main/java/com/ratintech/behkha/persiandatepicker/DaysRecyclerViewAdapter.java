@@ -21,6 +21,7 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     private PersianDatePicker.OnDaySelectListener mOnDaySelectListener;
     private int selectedPosition = -1;
     private int selectedItemBackgroundColor;
+    private int selectedItemBackgroundDrawable;
     private int selectedItemTextColor;
     private int defaultItemBackgroundColor;
     private int defaultItemTextColor;
@@ -90,7 +91,10 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
         if ( position == selectedPosition ){
             holder.mDay.setTextColor( mContext.getResources().getColor( this.selectedItemTextColor ) );
             holder.mWeekDay.setTextColor( mContext.getResources().getColor( this.selectedItemTextColor ) );
-            holder.mRoot.setCardBackgroundColor( mContext.getResources().getColor( this.selectedItemBackgroundColor ) );
+            if ( this.selectedItemBackgroundDrawable != 0 )
+                holder.mRoot.setBackground( mContext.getResources().getDrawable( this.selectedItemBackgroundDrawable ) );
+            else
+                holder.mRoot.setCardBackgroundColor( mContext.getResources().getColor( this.selectedItemBackgroundColor ) );
         }  else {
             holder.mRoot.setCardBackgroundColor( mContext.getResources().getColor( this.defaultItemBackgroundColor ) );
             holder.mDay.setTextColor( mContext.getResources().getColor( this.defaultItemTextColor ) );
@@ -108,6 +112,9 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     }
     public void setSelectedItemBackgroundColor(int selectedItemBackgroundColor) {
         this.selectedItemBackgroundColor = selectedItemBackgroundColor;
+    }
+    public void setSelectedItemBackgroundDrawable(int selectedItemBackgroundDrawable){
+        this.selectedItemBackgroundDrawable = selectedItemBackgroundDrawable;
     }
     public void setSelectedItemTextColor(int selectedItemTextColor) {
         this.selectedItemTextColor = selectedItemTextColor;
