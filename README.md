@@ -20,7 +20,7 @@ Then add the dependency in your android app module's `build.gradle` file.
 
 ```gradle
 dependencies {
-    implementation 'com.github.Behkha:Persian-Horizontal-Date-Picker:0.1.1'
+    implementation 'com.github.Behkha:Persian-Horizontal-Date-Picker:1.1.0'
 }
 ```
 
