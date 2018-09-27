@@ -26,7 +26,7 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     private PersianDatePicker.OnDaySelectListener mOnDaySelectListener;
     private int selectedPosition = -1;
     private int selectedItemBackgroundColor;
-    private int selectedItemBackground;
+    private int selectedItemBackground = 0;
     private int selectedItemTextColor;
     private int defaultItemBackgroundColor;
     private int defaultItemTextColor;
@@ -71,19 +71,24 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
             mWeekDay.setText(day.getDay());
 
             if ( getAdapterPosition() == selectedPosition ){
+
                 mDay.setTextColor( mContext.getResources().getColor( selectedItemTextColor ) );
                 mWeekDay.setTextColor( mContext.getResources().getColor( selectedItemTextColor ) );
                 if (selectedItemBackground != 0)
                     mRoot.setBackground( mContext.getResources().getDrawable( selectedItemBackground ));
                 else
-                    mRoot.setCardBackgroundColor( mContext.getResources().getColor( selectedItemBackgroundColor ) );
+                    mRoot.setBackgroundColor( mContext.getResources().getColor( selectedItemBackgroundColor ) );
+
             }  else {
-                if (selectedItemBackground != 0)
+
+//                if (selectedItemBackground == 0)
                     mRoot.setBackgroundColor( mContext.getResources().getColor( defaultItemBackgroundColor ));
-                else
-                    mRoot.setCardBackgroundColor( mContext.getResources().getColor( selectedItemBackgroundColor ) );
+//                else
+//                    mRoot.setCardBackgroundColor( mContext.getResources().getColor( selectedItemBackgroundColor ) );
+
                 mDay.setTextColor( mContext.getResources().getColor( defaultItemTextColor ) );
                 mWeekDay.setTextColor( mContext.getResources().getColor( defaultItemTextColor ) );
+
             }
         }
 

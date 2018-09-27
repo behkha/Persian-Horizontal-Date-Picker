@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDefaultItemTextColor(R.color.defaultTextColor)  // text color of non-selected item
                 .setSelectedItemBackgroundColor(R.color.colorPrimary) // background color of selected item
                 .setSelectedItemTextColor(R.color.selectText)   // text color of selected item
-                .setSelectedItemBackground(R.drawable.orange_gradient)
+//                .setSelectedItemBackground(R.drawable.orange_gradient)
                 .setListener(new PersianDatePicker.OnDaySelectListener() {
                     @Override
                     public void onDaySelect(YearMonth yearMonth, Day day) {
