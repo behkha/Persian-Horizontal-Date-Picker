@@ -30,6 +30,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
     private ArrayList<YearMonth> mYearMonths;
     private OnDaySelectListener mOnDaySelectListener;
     private Typeface typeface;
+    private int selectedPosition = -1;
     private float elevation = 0f;
     private float radius = 0f;
     private int selectedItemBackgroundColor = R.color.colorPrimary;
@@ -131,6 +132,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
             return;
         setupView(mYearMonthIndex);
     }
+
     private void setupView(int index){
 
         YearMonth yearMonth = this.mYearMonths.get(index);
@@ -146,6 +148,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
         adapter.setElevation(this.elevation);
         adapter.setRadius(this.radius);
         adapter.setAnimation(this.hasAnimation);
+        adapter.setSelectionPosition(selectedPosition);
         this.mDaysRecyclerView.setAdapter( adapter );
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , true);
         this.mDaysRecyclerView.setLayoutManager(linearLayoutManager);
@@ -174,6 +177,41 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
 
     private String getTitle(YearMonth yearMonth){
         return yearMonth.getYear() + " " + yearMonth.getMonth();
+    }
+
+    public int setItemSelected(String date) {
+        String[] strings = date.split("-");
+        if (strings.length != 3)
+            throw new IllegalArgumentException("date must divided by -");
+        int year = Integer.valueOf(strings[0]);
+        int day = Integer.valueOf(strings[2]);
+        int index = findYearMonthIndex(year,strings[1]);
+        if (index != -1) {
+            mYearMonthIndex = index;
+            selectedPosition = findDayIndex(mYearMonths.get(index),day);
+            setupView(mYearMonthIndex);
+        }
+        return selectedPosition;
+    }
+
+    public void scrollToPosition(int pos) {
+        mDaysRecyclerView.scrollToPosition(pos);
+    }
+
+    private int findYearMonthIndex(int year,String month){
+        for (int i = 0; i < mYearMonths.size(); i++) {
+            if (mYearMonths.get(i).getYear() == year && mYearMonths.get(i).getMonthNumber().equals(month))
+                return i;
+        }
+        return -1;
+    }
+
+    private int findDayIndex(YearMonth yearMonth, int day){
+        for (int i = 0; i < yearMonth.getDays().size(); i++) {
+            if (yearMonth.getDays().get(i).getNumber() == day)
+                return i;
+        }
+        return -1;
     }
 
     @Override

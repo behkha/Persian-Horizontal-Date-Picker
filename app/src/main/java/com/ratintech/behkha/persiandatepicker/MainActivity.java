@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 .hasAnimation(false) // Animation for item selection . default is false
                 .load();
 
+        
+
     }
 
 

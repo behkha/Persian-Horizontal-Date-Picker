@@ -159,4 +159,5 @@ public class DaysRecyclerViewAdapter extends RecyclerView.Adapter<DaysRecyclerVi
     public void setAnimation(boolean animation){
         this.hasAnimation = animation;
     }
+    public void setSelectionPosition(int selectedPosition){ this.selectedPosition = selectedPosition;}
 }
